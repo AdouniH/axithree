@@ -32,3 +32,8 @@ htmlcov/
 .tox/
 .nox/
 
+# SQLite databases
+*.db
+*.sqlite3
+axione.db
+

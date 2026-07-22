@@ -19,6 +19,14 @@ def list_tickets_endpoint(db: Session = Depends(get_db)) -> list[TicketRead]:
     return list_tickets(db)
 
 
+@router.get("/{ticket_id}", response_model=TicketRead)
+def get_ticket_endpoint(ticket_id: int, db: Session = Depends(get_db)) -> TicketRead:
+    ticket = get_ticket(db, ticket_id)
+    if ticket is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Ticket not found")
+    return ticket
+
+
 @router.put("/{ticket_id}", response_model=TicketRead)
 def put_ticket_endpoint(
     ticket_id: int, payload: TicketPut, db: Session = Depends(get_db)

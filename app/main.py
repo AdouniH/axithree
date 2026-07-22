@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 from app.api.v1.router import api_router
 from app.db.base import init_db
+from app.models.ticket import Ticket
 
 
 app = FastAPI(title="Axione API")

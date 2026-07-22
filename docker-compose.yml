@@ -1,0 +1,22 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: axitwo-api
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONPATH=/app
+    restart: unless-stopped
+
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: axitwo-tests
+    command: python -m pytest -q
+    environment:
+      - PYTHONPATH=/app
+    volumes:
+      - .:/app
